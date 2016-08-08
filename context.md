@@ -1,7 +1,7 @@
-## Context
+# Context
 This page will show snippets that demonstrate how context is handled in JavaScript.
 
-### The Basics
+## The Basics
 The following function will create a local variable and a function which returns the value of the variable. It is useless as it is, because it doesn't have any side effects or return anything. It will simply execute and all objects will be garbage collected.
 
 ```javascript
@@ -21,7 +21,7 @@ var test = new myFunc();
 test.hello;
 ```
 
-### 'Static Methods using Object Literals
+## 'Static Methods using Object Literals
 The following function will create and return an object literal with two properties, one a primitive string object and one a function. This could be considered similar to the static methods you would find in OOP languages, such as C# or Java.
 
 ```javascript
@@ -39,7 +39,7 @@ myObj.hello = "hello";
 myObj.getHello();
 ```
 
-### Which `this`?
+## Which `this`?
 If you use the `this` keyword when creating a variable in a function, it creates it in the scope of where the function exists in. If you create and run a function in global scope, then `this` refers to the global object. In a web browser, that is the `window` object. In Node, that is simply `global`.
 
 ```javascript
