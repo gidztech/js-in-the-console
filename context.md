@@ -2,7 +2,7 @@
 This page will show snippets that demonstrate how context is handled in JavaScript.
 
 ### The Basics
-The following function will create a local variable and a function which returns the value of the variable. It is useless as it is because it doesn't have any side effects or return anything. 
+The following function will create a local variable and a function which returns the value of the variable. It is useless as it is, because it doesn't have any side effects or return anything. It will simply execute and all objects will be garbage collected.
 
 ```javascript
 function myFunc() {
@@ -18,23 +18,23 @@ myFunc();
 // returns new object based on the myFunc prototype, which right now would only contain constructor information
 var test = new myFunc();
 // returns undefined since this is a local variable of the previous object
-test.hello
+test.hello;
 ```
 
-### 'Static' methods with object literals
-The following function will create an object literal with two properties, one a primitive string object and one a function. The function returns the object at the end. This could be considered similar to static methods you find in OOP languages, such as C# or Java.
+### 'Static Methods using Object Literals
+The following function will create and return an object literal with two properties, one a primitive string object and one a function. This could be considered similar to the static methods you would find in OOP languages, such as C# or Java.
 
 ```javascript
-    function getObj() {
-        return { 
-            hello: "hello", 
-            getHello: function() { 
-                return hello;
-            }  
-        }
+function getObj() {
+    return { 
+        hello: "hello", 
+        getHello: function() { 
+            return hello;
+        }  
     }
+}
 
-var myObj = getObj(); // you could use the `new` keyword if you like as it has no effect, it will always return the object literal
+var myObj = getObj(); // you could use the `new` keyword if you like, it will always return the object literal either way
 myObj.hello = "hello";
 myObj.getHello();
 ```
@@ -54,28 +54,33 @@ function MyObj() {
 
 // the variables are created in global context
 MyObj();
+
 // returns "hello object"
 this.hello; // or window.hello or hello
 this.getHello(); // or window.getHello() or getHello()
+```
 
 Now lets create a new object with it's own scope using the `new` keyword.
 
+```javascript
 var test = new MyObj();
 
 // returns Uncaught ReferenceError: hello is not defined
 this.hello;
 // returns "hello object"
 test.hello;
-
+```
 You can explicitly specify the `this` context using the `call` or `apply` function. The following are different ways of doing this:
 
+```javascript
 // uses the "this" context from the object instance
 console.log(test.getHello());
 
 // more explicitly uses the "this" context from the object instance (pointless to use in practice)
 console.log(test.getHello.call(test));
 
-// uses the comma operator, which evaluates 0 and then returns the second function definition to be called from the context of the global object
+// uses the comma operator, which evaluates 0 and then returns the second function definition 
+// to be called from the context of the global object
 console.log((0, test.getHello)());
 
 // use the call operator to explicitly set the "this" context to the window object
@@ -85,5 +90,4 @@ console.log(test.getHello.call(window));
 console.log(test.getHello.call());
 console.log(test.getHello.call(null));
 console.log(test.getHello.call(undefined));
-
 ```
