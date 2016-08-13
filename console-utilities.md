@@ -1,3 +1,5 @@
+# Console Utilities
+
 I recently came across a [question](http://stackoverflow.com/questions/38930923/how-to-find-out-colour-of-placeholder/38931792#38931792) 
 on Stack Overflow about viewing the CSS styles of a `placeholder` attribute in Chrome DevTools. 
 I worked out that because it is a pseudo element, it doesn't show up in the Styles/Computed panels. The only way to view the styles is
