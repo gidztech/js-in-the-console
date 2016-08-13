@@ -4,5 +4,4 @@ Here are some utilities I have created, which I have found useful when DevTools 
 
 ## Snippets
 
-## Topics
 ### [getSelectorStyle](console-utilities/get-selector-style.md)
