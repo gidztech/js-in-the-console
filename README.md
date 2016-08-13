@@ -7,3 +7,6 @@ I recommend the [Snippets](https://developers.google.com/web/tools/chrome-devtoo
 
 ## Topics
 ### [Context](context.md)
+
+##
+### [Console Utilities](console-utilities.md)
